@@ -8,14 +8,14 @@ include ('conexion.php');
 	
 $id = $_GET['id'];
 
-$historia_medica_id = ""; $primer_nombre = ""; $segundo_nombre = ""; $primer_apellido = ""; $segundo_apellido = ""; $nombre_padre = ""; $nombre_madre = ""; $sexo = ""; $telefono = ""; $fecha_nacimiento = ""; $lugar_nacimiento = ""; $seguro_social = ""; $provincia = ""; $distrito = ""; $corregimiento = ""; $direccion = ""; $nombre_urgencias = ""; $parentesco = ""; $telefono_urgenicas = "";
+$numero_historia = ""; $primer_nombre = ""; $segundo_nombre = ""; $primer_apellido = ""; $segundo_apellido = ""; $nombre_padre = ""; $nombre_madre = ""; $sexo = ""; $telefono = ""; $fecha_nacimiento = ""; $lugar_nacimiento = ""; $seguro_social = ""; $provincia = ""; $distrito = ""; $corregimiento = ""; $direccion = ""; $nombre_urgencias = ""; $parentesco_urgencias = ""; $telefono_urgencias = "";
 
 	
 	$query = mysql_query ("SELECT * FROM pacientes where id = '$id'", $db_link);
         
 if (mysql_num_rows($query)!= 0){
 	$r = mysql_fetch_array ($query);
-	$historia_medica_id = $r['historia_medica_id'];        
+	$numero_historia = $r['numero_historia'];        
 	$primer_nombre = $r['primer_nombre'];
         $segundo_nombre = $r['segundo_nombre'];
         $primer_apellido = $r['primer_apellido'];
@@ -23,7 +23,7 @@ if (mysql_num_rows($query)!= 0){
         $nombre_padre =  $r['nombre_padre'];
         $nombre_madre =  $r['nombre_madre'];
 	$sexo = $r['sexo'];
-	$telefono = $r['tlf'];
+	$telefono = $r['telefono'];
 	$fecha_nacimiento = $r['fecha_nacimiento'];
 	$lugar_nacimiento = $r['lugar_nacimiento'];
 	$seguro_social = $r['seguro_social'];
@@ -32,8 +32,8 @@ if (mysql_num_rows($query)!= 0){
 	$corregimiento = $r['corregimiento'];	
 	$direccion = $r['direccion'];
 	$nombre_urgencias = $r['nombre_urgencias'];
-	$parentesco = $r['parentesco'];
-	$telefono_urgenicas = $r['telefono_urgencias'];
+	$parentesco_urgencias = $r['parentesco_urgencias'];
+	$telefono_urgencias = $r['telefono_urgencias'];
 }
 
 ?>
@@ -76,90 +76,97 @@ if (mysql_num_rows($query)!= 0){
 		<div id="tabs-1" align = "center">
 			<p>Editar</p>
                         <table>
+				<form id = "formul" onsubmit = "GuardarCambios();return false;" action = "" method = "POST">
                         	<tr>
   					<td><font color = "#000000">ID:</font></td>
-                                        <td><font color = "#000000"><? echo $id;?></font></td>
+                                        <td><input type = "text" id = "id" value = "<? echo $id;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Numero de historia:</font></td>
-                                        <td><input type = "text" value = "<? echo $historia_medica_id;?> "></td>
+                                        <td><input type = "text" id = "numero_historia" value = "<? echo $numero_historia;?> "></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Primer Nombre:</font></td>
-                                        <td><input type = "text" value = "<? echo $primer_nombre;?> "></td>
+                                        <td><input type = "text" id = "primer_nombre" value = "<? echo $primer_nombre;?> "></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Segundo Nombre:</font></td>
-                                        <td><input type = "text" value = "<? echo $segundo_nombre;?> "></td>
+                                        <td><input type = "text" id = "segundo_nombre"  value = "<? echo $segundo_nombre;?> "></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Primer Apellido:</font></td>
-                                        <td><input type = "text" value = "<? echo $primer_apellido;?>"></td>
+                                        <td><input type = "text" id = "primer_apellido" value = "<? echo $primer_apellido;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Segundo Apellido:</font></td>
-                                        <td><input type = "text" value = "<? echo $segundo_apellido;?>"></td>
+                                        <td><input type = "text" id = "segundo_apellido"  value = "<? echo $segundo_apellido;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Nombre del padre:</font></td>
-                                        <td><input type = "text" value = "<? echo $nombre_padre;?>"></td>
+                                        <td><input type = "text" id = "nombre_padre" value = "<? echo $nombre_padre;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Nombre de la Madre:</font></td>
-                                        <td><input type = "text" value = "<? echo $nombre_madre;?>"></td>
+                                        <td><input type = "text" id = "nombre_madre" value = "<? echo $nombre_madre;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Sexo:</font></td>
-                                        <td><input type = "text" value = "<? echo $sexo;?>"></td>
+                                        <td><input type = "text" id = "sexo" value = "<? echo $sexo;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Telefono:</font></td>
-                                        <td><input type = "text" value = "<? echo $telefono;?>"></td>
+                                        <td><input type = "text" id = "telefono" value = "<? echo $telefono;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">fecha_nacimiento:</font></td>
-                                        <td><input type = "text" value = "<? echo $fecha_nacimiento;?>"></td>
+  					<td><font color = "#000000">Fecha de nacimiento:</font></td>
+                                        <td><input type = "text" id = "fecha_nacimiento" value = "<? echo $fecha_nacimiento;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">lugar_nacimiento:</font></td>
-                                        <td><input type = "text" value = "<? echo $lugar_nacimiento;?>"></td>
+  					<td><font color = "#000000">Lugar de nacimiento:</font></td>
+                                        <td><input type = "text"id = "lugar_nacimiento" value = "<? echo $lugar_nacimiento;?>"></td>
 				</tr>
 				<tr>
   					<td><font color = "#000000">Seguro social:</font></td>
-                                        <td><input type = "text" value = "<? echo $seguro_social;?>"></td>
+                                        <td><input type = "text" id = "seguro_social" value = "<? echo $seguro_social;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">provincia:</font></td>
-                                        <td><input type = "text" value = "<? echo $provincia;?>"></td>
+  					<td><font color = "#000000">Provincia:</font></td>
+                                        <td><input type = "text" id = "provincia" value = "<? echo $provincia;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">distrito:</font></td>
-                                        <td><input type = "text" value = "<? echo $distrito;?>"></td>
+  					<td><font color = "#000000">Distrito:</font></td>
+                                        <td><input type = "text" id = "distrito" value = "<? echo $distrito;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">corregimiento:</font></td>
-                                        <td><input type = "text" value = "<? echo $corregimiento;?>"></td>
+  					<td><font color = "#000000">Corregimiento:</font></td>
+                                        <td><input type = "text" id = "corregimiento" value = "<? echo $corregimiento;?>"></td>
 				</tr>
 
 				<tr>
-  					<td><font color = "#000000">direccion:</font></td>
-                                        <td><input type = "text" value = "<? echo $direccion;?>"></td>
+  					<td><font color = "#000000">Direccion:</font></td>
+                                        <td><input type = "text" id = "direccion" value = "<? echo $direccion;?>"></td>
+				</tr>
+ 				<tr>
+					<td><p><font color = "#000000">En caso de Urgencias llamar a:</font></p>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">nombre_urgencias:</font></td>
-                                        <td><input type = "text" value = "<? echo $nombre_urgencias;?>"></td>
+  					<td><font color = "#000000">Nombre:</font></td>
+                                        <td><input type = "text" id = "nombre_urgencias" value = "<? echo $nombre_urgencias;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">parentesco:</font></td>
-                                        <td><input type = "text" value = "<? echo $parentesco;?>"></td>
+  					<td><font color = "#000000">Parentesco:</font></td>
+                                        <td><input type = "text" id = "parentesco_urgencias" value = "<? echo $parentesco_urgencias;?>"></td>
 				</tr>
 				<tr>
-  					<td><font color = "#000000">telefono_urgenicas:</font></td>
-                                        <td><input type = "text" value = "<? echo $telefono_urgenicas;?>"></td>
+  					<td><font color = "#000000">Telefono:</font></td>
+                                        <td><input type = "text" id = "telefono_urgencias" value = "<? echo $telefono_urgencias;?>"></td>
 				</tr>
 				<tr>
                                         <td><input type = "submit" value="Guardar Cambios"></td>
+					<td><div id = "resultado2"></div></td>
 				</tr>
+
+				</form>
 
 			</table>
 	        </div>
