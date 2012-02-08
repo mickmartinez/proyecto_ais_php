@@ -19,6 +19,8 @@
 						
 						
 		if ($_SESSION['rol'] == "Taquillero"){
+			$id = 0;
+			//header("Location:taquillero.php?id=$id");
 			echo "<form onsubmit = 'buscarPaciente();return false;' action = '' method = 'POST'><strong>CEDULA: </strong><input type='text' id = 'cedula'/>";
 			echo "<INPUT TYPE='submit' value='Ingresar'/>";
                         echo "</form>";

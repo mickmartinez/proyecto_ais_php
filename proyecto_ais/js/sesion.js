@@ -74,7 +74,7 @@ function buscarPaciente(){
 				//return true;
 		//	}else{
 			 
-		//		alert("Clave de Usuario No Valida");
+				
 		//		return false;
 		//	}
 		//}else{
@@ -83,7 +83,7 @@ function buscarPaciente(){
 	// }
        
 }
-function GuardarCambios(){
+function GuardarCambiosPaciente(){
 	
 	   
 	var param1 = document.getElementById('id').value;
@@ -107,7 +107,7 @@ function GuardarCambios(){
 	var param19 = document.getElementById('parentesco_urgencias').value;
 	var param20 = document.getElementById('telefono_urgencias').value;
 
-				divResultado = document.getElementById('resultado2');
+				divResultado = document.getElementById('resultadoGuardarCambiosPaciente');
 				ajax=Ajax();
 				ajax.open("GET", "registro.php?id="+param1+"&numero_historia="+param2+"&primer_nombre="+param3+"&segundo_nombre="+param4+"&primer_apellido="+param5+"&segundo_apellido="+param6+"&nombre_padre="+param7+"&nombre_madre="+param8+"&sexo="+param9+"&telefono="+param10+"&lugar_nacimiento="+param11+"&fecha_nacimiento="+param12+"&seguro_social="+param13+"&provincia="+param14+"&distrito="+param15+"&corregimiento="+param16+"&direccion="+param17+"&nombre_urgencias="+param18+"&parentesco_urgencias="+param19+"&telefono_urgencias="+param20,true);
 				ajax.onreadystatechange=function() {
@@ -119,4 +119,65 @@ function GuardarCambios(){
 
        
 }
+
+function buscarPaciente2(){
+	
+	   
+	 var param1 = document.getElementById('cedula').value;
+	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
+
+	 //var b=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/  
+   
+	 
+	 //if (b.test(valor.value)){
+		//if (password.test(clave.value)){
+				divResultado = document.getElementById('resultado');
+				ajax=Ajax();
+				ajax.open("GET", "paciente.php?id="+param1,true);
+				ajax.onreadystatechange=function() {
+					if (ajax.readyState==4) {
+							divResultado.innerHTML = ajax.responseText
+					}
+				}
+				ajax.send(null);
+			//window.location = "pag2.html";
+				//return true;
+		//	}else{
+			 
+			
+		//		return false;
+		//	}
+		//}else{
+
+		//	return false;
+	// }
+       
+}
+
+function GuardarCambiosCita(){
+	
+	   
+	var param1 = document.getElementById('atencion').value;
+ 	var param2 = document.getElementById('servicios').value;
+	var param3 = document.getElementById('seguro').value;
+	var param4 = document.getElementById('frecuentacion').value;
+	var param5 = document.getElementById('frecuentacion_servicio').value;
+	var param6 = document.getElementById('tipo_atencion').value;
+	var param7 = document.getElementById('area').value;
+    	var param8 = document.getElementById('id_paciente').value;
+	
+
+				divResultado = document.getElementById('resultadoCita');
+				ajax=Ajax();
+				ajax.open("GET", "registro_cita.php?atencion="+param1+"&servicio="+param2+"&seguro="+param3+"&frecuentacion="+param4+"&frecuentacion_servicio="+param5+"&tipo_atencion="+param6+"&area="+param7 + "&paciente=" + param8,true);
+				ajax.onreadystatechange=function() {
+					if (ajax.readyState==4) {
+							divResultado.innerHTML = ajax.responseText
+					}
+				}
+				ajax.send(null);
+
+       
+}
+
 
