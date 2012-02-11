@@ -1,7 +1,7 @@
 function Ajax(){
 	
 		var xmlhttp=false;
-        try {
+        try	{
                 xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
         } catch (e) {
                 try {
@@ -16,21 +16,18 @@ function Ajax(){
         }
         return xmlhttp;
 }
-function MostrarConsulta(){
-	
-	   
-	 var param1 = document.getElementById('usuario').value;
-	 var param2 = document.getElementById('key').value;
-	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
 
+function MostrarConsulta(){
+
+	 var param1 = document.getElementById('usuario').value;
+	 var param2 = document.getElementById('clave').value;
+	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
 	 //var b=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/  
-   
-	 
 	 //if (b.test(valor.value)){
 		//if (password.test(clave.value)){
 				divResultado = document.getElementById('resultado');
 				ajax=Ajax();
-				ajax.open("GET", "php/verificar.php?id="+param1+"&key="+param2,true);
+				ajax.open("GET", "php/verificar.php?id="+param1+"&clave="+param2,true);
 				ajax.onreadystatechange=function() {
 					if (ajax.readyState==4) {
 							divResultado.innerHTML = ajax.responseText
@@ -48,17 +45,15 @@ function MostrarConsulta(){
 
 		//	return false;
 	// }
-       
 }
 function buscarPaciente(){
 	
-	   
+	 //var param1 = form.cedula.value;//cedula;
+	//alert (param1);
 	 var param1 = document.getElementById('cedula').value;
+	
 	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
-
 	 //var b=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/  
-   
-	 
 	 //if (b.test(valor.value)){
 		//if (password.test(clave.value)){
 				divResultado = document.getElementById('resultado');
@@ -81,11 +76,37 @@ function buscarPaciente(){
 
 		//	return false;
 	// }
-       
 }
+
+function buscarPaciente2(){
+	   
+	 var param1 = document.getElementById('cedula2').value;
+	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
+	 //var b=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/  
+	 //if (b.test(valor.value)){
+		//if (password.test(clave.value)){
+				divResultado = document.getElementById('resultado');
+				ajax=Ajax();
+				ajax.open("GET", "paciente2.php?id="+param1,true);
+				ajax.onreadystatechange=function() {
+					if (ajax.readyState==4) {
+							divResultado.innerHTML = ajax.responseText
+					}
+				}
+				ajax.send(null);
+			//window.location = "pag2.html";
+				//return true;
+		//	}else{
+		//		return false;
+		//	}
+		//}else{
+
+		//	return false;
+	// }       
+}
+
 function GuardarCambiosPaciente(){
 	
-	   
 	var param1 = document.getElementById('id').value;
  	var param2 = document.getElementById('numero_historia').value;
 	var param3 = document.getElementById('primer_nombre').value;
@@ -116,47 +137,11 @@ function GuardarCambiosPaciente(){
 					}
 				}
 				ajax.send(null);
-
-       
-}
-
-function buscarPaciente2(){
-	
-	   
-	 var param1 = document.getElementById('cedula').value;
-	 //var password = /^([A-Z]|[a-z]){3}[0-9]{4}([A-Z]|[a-z]){3}$/;
-
-	 //var b=/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{3})+$/  
-   
-	 
-	 //if (b.test(valor.value)){
-		//if (password.test(clave.value)){
-				divResultado = document.getElementById('resultado');
-				ajax=Ajax();
-				ajax.open("GET", "paciente.php?id="+param1,true);
-				ajax.onreadystatechange=function() {
-					if (ajax.readyState==4) {
-							divResultado.innerHTML = ajax.responseText
-					}
-				}
-				ajax.send(null);
-			//window.location = "pag2.html";
-				//return true;
-		//	}else{
-			 
-			
-		//		return false;
-		//	}
-		//}else{
-
-		//	return false;
-	// }
        
 }
 
 function GuardarCambiosCita(){
 	
-	   
 	var param1 = document.getElementById('atencion').value;
  	var param2 = document.getElementById('servicios').value;
 	var param3 = document.getElementById('seguro').value;
@@ -164,19 +149,17 @@ function GuardarCambiosCita(){
 	var param5 = document.getElementById('frecuentacion_servicio').value;
 	var param6 = document.getElementById('tipo_atencion').value;
 	var param7 = document.getElementById('area').value;
-    	var param8 = document.getElementById('id_paciente').value;
-	
+    var param8 = document.getElementById('id_paciente').value;
+	divResultado = document.getElementById('resultadoCita');
 
-				divResultado = document.getElementById('resultadoCita');
-				ajax=Ajax();
-				ajax.open("GET", "registro_cita.php?atencion="+param1+"&servicio="+param2+"&seguro="+param3+"&frecuentacion="+param4+"&frecuentacion_servicio="+param5+"&tipo_atencion="+param6+"&area="+param7 + "&paciente=" + param8,true);
-				ajax.onreadystatechange=function() {
-					if (ajax.readyState==4) {
-							divResultado.innerHTML = ajax.responseText
-					}
-				}
-				ajax.send(null);
-
+	ajax=Ajax();
+	ajax.open("GET", "registro_cita.php?atencion="+param1+"&servicio="+param2+"&seguro="+param3+"&frecuentacion="+param4+"&frecuentacion_servicio="+param5+"&tipo_atencion="+param6+"&area="+param7 + "&paciente=" + param8,true);
+	ajax.onreadystatechange=function() {
+		if (ajax.readyState==4) {
+				divResultado.innerHTML = ajax.responseText
+		}
+	}
+	ajax.send(null);
        
 }
 
